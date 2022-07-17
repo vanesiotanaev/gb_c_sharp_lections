@@ -117,8 +117,6 @@ Console.WriteLine(newText);
 newText = ReplaceTextMethod (newText, 'с', 'С');
 Console.WriteLine(newText);
 
-*/
-
 // 2. Упорядочить массив.
 // Алгоритм сортировки методом выбора или методом MiniMax.
 // 6 8 3 2 1 4 5 7
@@ -161,3 +159,45 @@ PrintArrayMethod(arr);
 MiniMaxSortMethod(arr);
 
 PrintArrayMethod (arr);
+
+*/
+
+// 3. Упорядочить массив. Домашнее задание.
+// Алгоритм сортировки методом выбора или методом MiniMax.
+// 6 8 3 2 1 4 5 7
+// Выбираем первый элемент массива. В оставшейся части выбираем максимальный.
+// Меняем местами выделенный элемент с найденым максимальным значением.
+// Перемещаемся на следующий элемент. В оставшейся части минимальный. Меняем их местами.
+
+void PrintArrayMethod (int[] array)
+{
+    int arrayLength = array.Length;
+    for (int i = 0; i < arrayLength; i++)
+    {
+        Console.Write($"{array[i]} ");
+    }
+}
+
+void MinMaxMethod (int[] array)
+{
+    for (int i = 0; i < array.Length - 1; i++)
+    {
+        int curPos = i;
+        for (int j = i + 1; j < array.Length; j++)
+        {
+            if (array[j] > array[curPos]) curPos = j;
+        }
+        
+        int temp = array [i];
+        array[i] = array[curPos];
+        array[curPos] = temp;
+    }
+    PrintArrayMethod(array);
+
+}
+
+int[] userarray = {6, 1, 3, 2, 1, 4, 5, 7, 8, 0};
+PrintArrayMethod(userarray);
+Console.WriteLine();
+MinMaxMethod(userarray);
+
